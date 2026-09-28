@@ -10,6 +10,7 @@ import {
 import './index.css'
 // import App from './App.tsx'
 
+import AppLayout from './components/layout/AppLayout'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Dashboard from './pages/Dashboard'
@@ -23,20 +24,27 @@ import AIModels from './pages/AIModels'
 import Users from './pages/Users'
 import Settings from './pages/Settings'
 
+import { ThemeProvider } from './context/ThemeProvider'
+
 const router = createBrowserRouter([
   { path: '/', element: <Login /> },
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <Signup /> },
-  { path: '/dashboard', element: <Dashboard /> },
-  { path: '/live', element: <LiveMonitoring /> },
-  { path: '/violations', element: <Violations /> },
-  { path: '/violations/:id', element: <ViolationReview /> },
-  { path: '/vehicles', element: <Vehicles /> },
-  { path: '/cameras', element: <Cameras /> },
-  { path: '/analytics', element: <Analytics /> },
-  { path: '/ai-models', element: <AIModels /> },
-  { path: '/users', element: <Users /> },
-  { path: '/settings', element: <Settings /> },
+  {
+    element: <AppLayout />,
+    children: [
+      { path: 'dashboard', element: <Dashboard /> },
+      { path: 'live', element: <LiveMonitoring /> },
+      { path: 'violations', element: <Violations /> },
+      { path: 'violations/:id', element: <ViolationReview /> },
+      { path: 'vehicles', element: <Vehicles /> },
+      { path: 'cameras', element: <Cameras /> },
+      { path: 'analytics', element: <Analytics /> },
+      { path: 'ai-models', element: <AIModels /> },
+      { path: 'users', element: <Users /> },
+      { path: 'settings', element: <Settings /> },
+    ],
+  },
 ])
 
 const queryClient = new QueryClient()
@@ -44,7 +52,9 @@ const queryClient = new QueryClient()
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>,
 )
