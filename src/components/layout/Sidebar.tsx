@@ -9,12 +9,25 @@ import {
   BrainCircuit,
   Settings,
   LogOut,
+  X,
 } from 'lucide-react'
 import { NavLink } from 'react-router'
 
-function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+      <button
+        className="sidebar-close"
+        onClick={onClose}
+        aria-label="Close navigation"
+      >
+        <X size={20} />
+      </button>
       {/* Logo */}
       <div className="sidebar-logo">
         <div className="sidebar-logo-icon">
@@ -29,13 +42,7 @@ function Sidebar() {
 
       {/* Navigation */}
       <nav className="sidebar-nav">
-
-        {/* Overview */}
         <div className="sidebar-section">
-          <p className="sidebar-section-title">
-            Overview
-          </p>
-
           <NavLink to="/dashboard" className="sidebar-link">
             <LayoutDashboard size={20} />
             <span>Dashboard</span>
@@ -57,12 +64,7 @@ function Sidebar() {
           </NavLink>
         </div>
 
-        {/* Management */}
         <div className="sidebar-section">
-          <p className="sidebar-section-title">
-            Management
-          </p>
-
           <NavLink to="/users" className="sidebar-link">
             <Users size={20} />
             <span>Users</span>
@@ -79,12 +81,7 @@ function Sidebar() {
           </NavLink>
         </div>
 
-        {/* System */}
         <div className="sidebar-section">
-          <p className="sidebar-section-title">
-            System
-          </p>
-
           <NavLink to="/ai-models" className="sidebar-link">
             <BrainCircuit size={20} />
             <span>AI Models</span>

@@ -13,13 +13,19 @@ interface ThemeProviderProps {
 export function ThemeProvider({
   children,
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem('theme')
+
+    return savedTheme === 'dark' ? 'dark' : 'light'
+  })
 
   useEffect(() => {
     document.documentElement.setAttribute(
       'data-theme',
       theme,
     )
+
+    localStorage.setItem('theme', theme)
   }, [theme])
 
   const toggleTheme = () => {

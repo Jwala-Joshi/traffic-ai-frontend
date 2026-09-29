@@ -1,13 +1,24 @@
-import { Bell, ChevronDown, Moon, Sun, User} from 'lucide-react'
+import { Bell, ChevronDown,Menu, Moon, Sun, User} from 'lucide-react'
 import { useTheme } from '../../context/useTheme'
 
-function Header() {
+interface HeaderProps {
+  onMenuClick: () => void
+}
+
+function Header({ onMenuClick }: HeaderProps) {
   const { theme, toggleTheme } = useTheme()
 
   return (
     <header className="header">
+      <button
+      className="header-menu-button"
+      onClick={onMenuClick}
+      aria-label="Open navigation"
+    >
+      <Menu size={22} />
+    </button>
       <div className="header-page">
-        <h2>Traffic AI</h2>
+        <h2>Sentry</h2>
       </div>
 
       <div className="header-actions">
