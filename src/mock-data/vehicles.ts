@@ -5,7 +5,7 @@ export const vehiclesData: VehiclesData = {
     {
       id: 1,
       plateNumber: 'BA 2 PA 4821',
-      type: 'motorcycle',
+      type: 'bike',
       make: 'Honda',
       model: 'CB Shine',
       color: 'Black',
@@ -41,7 +41,7 @@ export const vehiclesData: VehiclesData = {
     {
       id: 4,
       plateNumber: 'BA 5 KHA 1832',
-      type: 'motorcycle',
+      type: 'bike',
       make: 'Yamaha',
       model: 'FZ',
       color: 'Blue',
@@ -89,7 +89,7 @@ export const vehiclesData: VehiclesData = {
     {
       id: 8,
       plateNumber: 'BA 8 PA 4729',
-      type: 'motorcycle',
+      type: 'bike',
       make: 'Bajaj',
       model: 'Pulsar 150',
       color: 'Red',
