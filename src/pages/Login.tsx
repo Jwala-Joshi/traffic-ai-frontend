@@ -9,7 +9,6 @@ function Login() {
   const navigate = useNavigate()
   const { loginUser } = useAuth()
 
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
 
@@ -18,6 +17,10 @@ function Login() {
 
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
+
+  const [email, setEmail] = useState(
+    () => localStorage.getItem('remember-email') ?? '',
+  )
 
   const handleSubmit = async (
     event: React.SubmitEvent<HTMLFormElement>,
@@ -46,6 +49,12 @@ function Login() {
       }
 
       loginUser(response.user, rememberMe)
+
+      if (rememberMe) {
+        localStorage.setItem('remember-email', email)
+      } else {
+        localStorage.removeItem('remember-email')
+      }
 
       navigate('/dashboard')
     } catch {
