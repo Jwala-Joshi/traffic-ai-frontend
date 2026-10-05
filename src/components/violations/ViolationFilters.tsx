@@ -1,21 +1,27 @@
-import { CalendarDays, Filter, Search } from 'lucide-react'
+import { Filter, Search } from 'lucide-react'
 
 interface ViolationFiltersProps {
   search: string
   status: string
   type: string
+  date: string
   onSearchChange: (value: string) => void
   onStatusChange: (value: string) => void
   onTypeChange: (value: string) => void
+  onDateChange: (value: string) => void
+  onClearFilters: () => void
 }
 
 function ViolationFilters({
   search,
   status,
   type,
+  date,
   onSearchChange,
   onStatusChange,
   onTypeChange,
+  onDateChange,
+  onClearFilters
 }: ViolationFiltersProps) {
   return (
     <div className="violations-filters">
@@ -40,7 +46,8 @@ function ViolationFilters({
         >
           <option value="all">All Status</option>
           <option value="pending">Pending</option>
-          <option value="reviewed">Reviewed</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="rejected">Rejected</option>
         </select>
 
         <select
@@ -55,9 +62,21 @@ function ViolationFilters({
           <option value="speed">Speeding</option>
         </select>
 
-        <button className="violations-date-button">
-          <CalendarDays size={17} />
-          Today
+        <div className="violations-date-picker">
+          <input
+            type="date"
+            value={date}
+            onChange={(event) => onDateChange(event.target.value)}
+            aria-label="Filter by date"
+          />
+        </div>
+
+        <button
+          type="button"
+          className="violations-clear-filters"
+          onClick={onClearFilters}
+        >
+          Clear
         </button>
       </div>
     </div>

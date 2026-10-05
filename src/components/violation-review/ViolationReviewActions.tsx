@@ -1,43 +1,50 @@
-import { CheckCircle, ArrowLeft } from 'lucide-react'
+import {CheckCircle,XCircle} from 'lucide-react'
 import type { ViolationStatus } from '../../types/violations'
 
 interface ViolationReviewActionsProps {
   status: ViolationStatus
-  onBack: () => void
-  onMarkReviewed: () => void
+  onStatusChange: (status: ViolationStatus) => void
 }
 
 function ViolationReviewActions({
   status,
-  onBack,
-  onMarkReviewed,
+  onStatusChange,
 }: ViolationReviewActionsProps) {
-  const isReviewed = status === 'reviewed'
+  const isPending = status === 'pending'
 
   return (
     <section className="review-actions">
-      <button
-        className="review-back-button"
-        onClick={onBack}
-      >
-        <ArrowLeft size={17} />
-        Back to Violations
-      </button>
+      {isPending && (
+        <>
+          <button
+            className="review-confirm-button"
+            onClick={() => onStatusChange('confirmed')}
+          >
+            <CheckCircle size={17} />
+            Confirm Violation
+          </button>
 
-      {!isReviewed && (
-        <button
-          className="review-confirm-button"
-          onClick={onMarkReviewed}
-        >
-          <CheckCircle size={17} />
-          Mark as Reviewed
-        </button>
+          <button
+            className="review-reject-button"
+            onClick={() => onStatusChange('rejected')}
+          >
+            <XCircle size={17} />
+            Reject Violation
+          </button>
+        </>
       )}
 
-      {isReviewed && (
-        <div className="review-completed">
+      {status === 'confirmed' && (
+        <div className="review-completed confirmed">
           <CheckCircle size={17} />
-          Violation Reviewed
+          Violation Confirmed
+        </div>
+      )}
+
+      {status === 'rejected' && (
+        <div className="review-completed rejected">
+          <XCircle size={17} />
+          Violation Rejected
         </div>
       )}
     </section>

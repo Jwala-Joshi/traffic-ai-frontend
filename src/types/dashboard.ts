@@ -25,7 +25,7 @@ export interface RecentViolation {
   violation: string
   camera: string
   time: string
-  status: 'pending' | 'reviewed'
+  status: 'pending' | 'confirmed' | 'rejected'
 }
 
 export interface DashboardData {

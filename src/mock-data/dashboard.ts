@@ -69,7 +69,7 @@ export const dashboardData: DashboardData = {
       violation: 'No Helmet',
       camera: 'Camera 02',
       time: '8 min ago',
-      status: 'reviewed',
+      status: 'rejected',
     },
     {
       id: 3,
@@ -85,7 +85,7 @@ export const dashboardData: DashboardData = {
       violation: 'Speeding',
       camera: 'Camera 02',
       time: '21 min ago',
-      status: 'reviewed',
+      status: 'confirmed',
     },
     {
       id: 5,

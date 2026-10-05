@@ -15,6 +15,10 @@ function Violations() {
   const [search, setSearch] = useState('')
   const [status, setStatus] = useState('all')
   const [type, setType] = useState('all')
+  const [date, setDate] = useState('')
+
+  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     getViolationsData().then((data) => {
@@ -35,43 +39,70 @@ function Violations() {
       const matchesType =
         type === 'all' || violation.violationType === type
 
-      return matchesSearch && matchesStatus && matchesType
+      const matchesDate =
+        !date || violation.date === date
+
+      return matchesSearch && matchesStatus && matchesType && matchesDate
     })
-  }, [violations, search, status, type])
+  }, [violations, search, status, type, date])
+
+  const totalPages = Math.ceil(
+    filteredViolations.length / rowsPerPage,
+  )
+
+  const startIndex = (currentPage - 1) * rowsPerPage
+  const endIndex = startIndex + rowsPerPage
+
+  const paginatedViolations = filteredViolations.slice(
+    startIndex,
+    endIndex,
+  )
 
   const pendingCount = violations.filter(
     (violation) => violation.status === 'pending',
   ).length
 
-  const reviewedCount = violations.filter(
-    (violation) => violation.status === 'reviewed',
+  const confirmedCount = violations.filter(
+    (violation) => violation.status === 'confirmed',
+  ).length
+
+  const rejectedCount = violations.filter(
+    (violation) => violation.status === 'rejected',
   ).length
 
   return (
     <div className="violations-page">
       <div className="violations-heading">
-        <div>
           <h1>Violations</h1>
-          <p>
-            Review and manage detected traffic violations.
-          </p>
+      </div>
+
+      <div className="violations-summary">
+        <div className="violations-stat-card">
+          <span className="violations-stat-label">
+            Total Violations
+          </span>
+          <strong>{violations.length}</strong>
         </div>
 
-        <div className="violations-summary">
-          <div>
-            <strong>{violations.length}</strong>
-            <span>Total</span>
-          </div>
+        <div className="violations-stat-card">
+          <span className="violations-stat-label">
+            Pending
+          </span>
+          <strong>{pendingCount}</strong>
+        </div>
 
-          <div>
-            <strong>{pendingCount}</strong>
-            <span>Pending</span>
-          </div>
+        <div className="violations-stat-card">
+          <span className="violations-stat-label">
+            Confirmed
+          </span>
+          <strong>{confirmedCount}</strong>
+        </div>
 
-          <div>
-            <strong>{reviewedCount}</strong>
-            <span>Reviewed</span>
-          </div>
+        <div className="violations-stat-card">
+          <span className="violations-stat-label">
+            Rejected
+          </span>
+          <strong>{rejectedCount}</strong>
         </div>
       </div>
 
@@ -80,34 +111,90 @@ function Violations() {
           search={search}
           status={status}
           type={type}
-          onSearchChange={setSearch}
-          onStatusChange={setStatus}
-          onTypeChange={setType}
+          date={date}
+          onSearchChange={(value) => {
+            setSearch(value)
+            setCurrentPage(1)
+          }}
+          onStatusChange={(value) => {
+            setStatus(value)
+            setCurrentPage(1)
+          }}
+          onTypeChange={(value) => {
+            setType(value)
+            setCurrentPage(1)
+          }}
+          onDateChange={(value) => {
+            setDate(value)
+            setCurrentPage(1)
+          }}
+          onClearFilters={() => {
+            setSearch('')
+            setStatus('all')
+            setType('all')
+            setDate('')
+            setCurrentPage(1)
+          }}
         />
 
         <div className="violations-table-header">
-          <div>
+          <div className="violations-table-header-content">
             <h2>Violation Records</h2>
-            <span>
-              Showing {filteredViolations.length} of {violations.length}{' '}
-              violations
-            </span>
+            <div className="violations-rows-per-page">
+              <span>Rows per page:</span>
+
+              <select
+                value={rowsPerPage}
+                onChange={(event) => {
+                  setRowsPerPage(Number(event.target.value))
+                  setCurrentPage(1)
+                }}
+              >
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+                <option value={50}>50</option>
+              </select>
+            </div>
           </div>
         </div>
 
         <ViolationTable
-          violations={filteredViolations}
+          violations={paginatedViolations}
           onView={(id) => navigate(`/violations/${id}`)}
         />
 
         <div className="violations-pagination">
-          <button disabled>Previous</button>
+          {filteredViolations.length > rowsPerPage && (
+            <div className="violations-pagination-controls">
+              <span>
+                {startIndex + 1}–
+                {Math.min(endIndex, filteredViolations.length)} of{' '}
+                {filteredViolations.length}
+              </span>
 
-          <span className="active">1</span>
-          <span>2</span>
-          <span>3</span>
+              <button
+                type="button"
+                disabled={currentPage <= 1}
+                onClick={() => {
+                  setCurrentPage((page) => Math.max(page - 1, 1))
+                }}
+              >
+                ‹
+              </button>
 
-          <button>Next</button>
+              <button
+                type="button"
+                disabled={currentPage >= totalPages}
+                onClick={() => {
+                  setCurrentPage((page) =>
+                    Math.min(page + 1, totalPages),
+                  )
+                }}
+              >
+                ›
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </div>

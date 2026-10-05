@@ -1,4 +1,4 @@
-export type ViolationStatus = 'pending' | 'reviewed'
+export type ViolationStatus = 'pending' | 'confirmed' | 'rejected'
 
 export type ViolationType =
   | 'red-light'

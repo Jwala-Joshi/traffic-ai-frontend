@@ -1,9 +1,4 @@
-import {
-  Car,
-  CircleAlert,
-  MapPin,
-  ShieldCheck,
-} from 'lucide-react'
+import {Car,CircleAlert,MapPin,ShieldCheck} from 'lucide-react'
 import type { Violation } from '../../types/violations'
 import ViolationStatusBadge from '../violations/ViolationStatusBadge'
 
@@ -19,7 +14,6 @@ function ViolationDetails({
       <div className="review-panel-header">
         <div>
           <h2>Violation Details</h2>
-          <p>Information detected by the AI system</p>
         </div>
 
         <CircleAlert size={19} />

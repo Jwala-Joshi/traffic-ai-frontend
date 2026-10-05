@@ -48,12 +48,14 @@ function ViolationReview() {
     )
   }
 
-  const markAsReviewed = () => {
+  const updateViolationStatus = (
+    status: Violation['status'],
+  ) => {
     setViolation((current) =>
       current
         ? {
             ...current,
-            status: 'reviewed',
+            status,
           }
         : null,
     )
@@ -94,8 +96,7 @@ function ViolationReview() {
 
       <ViolationReviewActions
         status={violation.status}
-        onBack={() => navigate('/violations')}
-        onMarkReviewed={markAsReviewed}
+        onStatusChange={updateViolationStatus}
       />
     </div>
   )

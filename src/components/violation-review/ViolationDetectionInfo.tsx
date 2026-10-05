@@ -1,9 +1,4 @@
-import {
-  Camera,
-  CalendarDays,
-  Clock3,
-  ShieldCheck,
-} from 'lucide-react'
+import {Camera,CalendarDays,Clock3,ShieldCheck} from 'lucide-react'
 import type { Violation } from '../../types/violations'
 
 interface ViolationDetectionInfoProps {
