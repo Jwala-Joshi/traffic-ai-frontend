@@ -1,12 +1,4 @@
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts'
+import {LineChart,Line,XAxis,YAxis,CartesianGrid,Tooltip,ResponsiveContainer,} from 'recharts'
 
 import type { ViolationTrend } from '../../types/analytics'
 
@@ -45,7 +37,13 @@ function ViolationTrendChart({
               fontSize={11}
             />
 
-            <Tooltip />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#9fa3aa',
+                border: '1px solid #4b5563',
+                borderRadius: '8px',
+              }}
+            />
 
             <Line
               type="monotone"

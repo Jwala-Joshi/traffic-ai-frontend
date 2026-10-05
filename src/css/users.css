@@ -1,6 +1,4 @@
-/* =========================
-   Users
-   ========================= */
+/* Users */
 
 .users-page {
   max-width: 1600px;
@@ -43,9 +41,7 @@
   opacity: 0.9;
 }
 
-/* =========================
-   Stats
-   ========================= */
+/* Stats */
 
 .users-stats {
   display: grid;
@@ -97,9 +93,7 @@
   font-size: 11px;
 }
 
-/* =========================
-   Main content
-   ========================= */
+/* Main content */
 
 .users-content {
   border: 1px solid var(--border-color);
@@ -123,9 +117,7 @@
   font-size: 12px;
 }
 
-/* =========================
-   Filters
-   ========================= */
+/* Filters */
 
 .users-filters {
   display: flex;
@@ -176,9 +168,7 @@
   border-color: var(--text-secondary);
 }
 
-/* =========================
-   Table
-   ========================= */
+/* Table */
 
 .users-table-wrapper {
   width: 100%;
@@ -305,9 +295,7 @@
   color: var(--text-primary);
 }
 
-/* =========================
-   Empty / Loading
-   ========================= */
+/* Empty / Loading */
 
 .users-empty-state {
   display: flex;
@@ -336,9 +324,7 @@
   color: var(--text-secondary);
 }
 
-/* =========================
-   User Actions
-   ========================= */
+/* User Actions */
 
 .users-actions {
   display: flex;
@@ -395,9 +381,7 @@
   color: var(--text-primary);
 }
 
-/* =========================
-   Modals
-   ========================= */
+/* Modals*/
 
 .users-modal-overlay {
   position: fixed;
@@ -459,9 +443,7 @@
   color: var(--text-primary);
 }
 
-/* =========================
-   Form
-   ========================= */
+/* Form */
 
 .users-modal-body {
   display: flex;
@@ -507,9 +489,7 @@
   border-color: var(--text-secondary);
 }
 
-/* =========================
-   Modal Footer
-   ========================= */
+/* Modal Footer */
 
 .users-modal-footer {
   display: flex;
@@ -552,9 +532,7 @@
   opacity: 0.9;
 }
 
-/* =========================
-   Delete Modal
-   ========================= */
+/* Delete Modal */
 
 .users-delete-modal {
   max-width: 450px;
@@ -607,39 +585,7 @@
   opacity: 0.9;
 }
 
-/* =========================
-   Modal Responsive
-   ========================= */
-
-@media (max-width: 500px) {
-  .users-modal-overlay {
-    align-items: flex-end;
-    padding: 0;
-  }
-
-  .users-modal {
-    max-width: none;
-    border-radius: 10px 10px 0 0;
-  }
-
-  .users-form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .users-modal-footer {
-    flex-direction: column-reverse;
-  }
-
-  .users-modal-cancel,
-  .users-modal-save,
-  .users-modal-delete {
-    width: 100%;
-  }
-}
-
-/* =========================
-   Responsive
-   ========================= */
+/* Responsive */
 
 @media (max-width: 1100px) {
   .users-stats {
@@ -674,6 +620,29 @@
 @media (max-width: 500px) {
   .users-stats {
     grid-template-columns: 1fr;
+  }
+  .users-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .users-modal {
+    max-width: none;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .users-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .users-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .users-modal-cancel,
+  .users-modal-save,
+  .users-modal-delete {
+    width: 100%;
   }
 }
 

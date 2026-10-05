@@ -132,9 +132,6 @@ function Cameras() {
       <div className="cameras-heading">
         <div>
           <h1>Cameras</h1>
-          <p>
-            Manage traffic cameras and monitor their connection status.
-          </p>
         </div>
 
         <button

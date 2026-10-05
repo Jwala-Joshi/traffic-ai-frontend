@@ -56,10 +56,6 @@ function LiveMonitoring() {
       <div className="monitoring-heading">
         <div>
           <h1>Live Monitoring</h1>
-          <p>
-            Monitor traffic cameras and AI detections in
-            real time.
-          </p>
         </div>
 
         <div className="monitoring-system-status">

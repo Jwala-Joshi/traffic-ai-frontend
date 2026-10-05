@@ -16,6 +16,7 @@
   --sidebar-hover: #f3f4f6;
 
   --icon-background: #e5e7eb;
+  --chart-primary: #2563eb;
 }
 
 [data-theme='dark'] {
@@ -31,8 +32,9 @@
 
   --sidebar-active: #374151;
   --sidebar-hover: #1f2937;
-
+  
   --icon-background: #374151;
+  --chart-primary: #60a5fa;
 }
 
 /* Global */

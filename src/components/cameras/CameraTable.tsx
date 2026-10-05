@@ -1,4 +1,4 @@
-import { Camera, MoreHorizontal } from 'lucide-react'
+import { Camera } from 'lucide-react'
 import type { Camera as CameraType } from '../../types/cameras'
 import CameraStatusBadge from './CameraStatusBadge'
 
@@ -83,14 +83,6 @@ function CameraTable({
                     aria-label={`Delete ${camera.name}`}
                   >
                     Delete
-                  </button>
-
-                  <button
-                    type="button"
-                    className="cameras-more-button"
-                    aria-label={`More actions for ${camera.name}`}
-                  >
-                    <MoreHorizontal size={17} />
                   </button>
                 </div>
               </td>

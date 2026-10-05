@@ -71,7 +71,7 @@ function Header({ onMenuClick }: HeaderProps) {
       </button>
 
       <div className="header-page">
-        <h2>Traffic AI</h2>
+        <h2>Sentry</h2>
       </div>
 
       <div className="header-actions">

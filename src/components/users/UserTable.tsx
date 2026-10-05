@@ -1,6 +1,7 @@
 import {UserRound } from 'lucide-react'
 import type { User } from '../../types/users'
 import UserStatusBadge from './UserStatusBadge'
+import { useAuth } from '../../context/useAuth'
 
 interface UserTableProps {
   users: User[]
@@ -12,7 +13,10 @@ function UserTable({
   users,
   onEdit,
   onDelete,
-}: UserTableProps) {
+}: UserTableProps) {  
+  const { user } = useAuth()
+  const isAdministrator = user?.role === 'administrator'
+
   return (
     <div className="users-table-wrapper">
       <table className="users-table">
@@ -23,7 +27,7 @@ function UserTable({
             <th>Status</th>
             <th>Last Active</th>
             <th>Joined</th>
-            <th>Actions</th>
+            {isAdministrator && (<th>Actions</th>)}
           </tr>
         </thead>
 
@@ -63,27 +67,29 @@ function UserTable({
                 {user.joinedDate}
               </td>
 
-              <td>
-                <div className="users-actions">
-                  <button
-                    type="button"
-                    className="users-edit-button"
-                    aria-label={`Edit ${user.name}`}
-                    onClick={() => onEdit(user)}
-                  >
-                    Edit
-                  </button>
+              {isAdministrator && (
+                <td>
+                  <div className="users-actions">
+                    <button
+                      type="button"
+                      className="users-edit-button"
+                      aria-label={`Edit ${user.name}`}
+                      onClick={() => onEdit(user)}
+                    >
+                      Edit
+                    </button>
 
-                  <button
-                    type="button"
-                    className="users-delete-button"
-                    aria-label={`Delete ${user.name}`}
-                    onClick={() => onDelete(user)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
+                    <button
+                      type="button"
+                      className="users-delete-button"
+                      aria-label={`Delete ${user.name}`}
+                      onClick={() => onDelete(user)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              )}
             </tr>
           ))}
 

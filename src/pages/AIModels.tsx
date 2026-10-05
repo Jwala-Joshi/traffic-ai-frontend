@@ -1,27 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
-import {
-  Activity,
-  Brain,
-  CircleCheck,
-  Layers,
-  Plus,
-} from 'lucide-react'
+import {Activity,Brain,CircleCheck,Layers, Plus} from 'lucide-react'
 
 import AIModelStatCard from '../components/ai-models/AIModelStatCard'
 import AIModelFilters from '../components/ai-models/AIModelFilters'
 import AIModelTable from '../components/ai-models/AIModelTable'
-// import EditAIModel from '../components/ai-models/EditAIModel'
 import EditAIModelModal from '../components/ai-models/EditAIModel'
 import DeleteAIModel from '../components/ai-models/DeleteAIModel'
 
 import { getAIModelsData } from '../services/aiModelsService'
 
-import type {
-  AIModel,
-  AIModelStatus,
-  AIModelType,
-  AIModelsData,
-} from '../types/aiModels'
+import type {AIModel,AIModelStatus,AIModelType,AIModelsData} from '../types/aiModels'
 
 import '../css/ai-models.css'
 

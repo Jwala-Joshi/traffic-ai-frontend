@@ -37,10 +37,6 @@ function Analytics() {
       <div className="analytics-heading">
         <div>
           <h1>Analytics</h1>
-          <p>
-            Monitor traffic violation trends and system
-            performance.
-          </p>
         </div>
 
         <div className="analytics-period">
@@ -52,28 +48,24 @@ function Analytics() {
         <AnalyticsStatCard
           title="Total Violations"
           value={data.stats.totalViolations.toLocaleString()}
-          description="Recorded violations"
           icon={<AlertTriangle size={20} />}
         />
 
         <AnalyticsStatCard
           title="Today's Violations"
           value={String(data.stats.todayViolations)}
-          description="Detected today"
           icon={<BarChart3 size={20} />}
         />
 
         <AnalyticsStatCard
           title="Average Per Day"
           value={data.stats.averagePerDay.toFixed(1)}
-          description="Violations per day"
           icon={<Gauge size={20} />}
         />
 
         <AnalyticsStatCard
           title="AI Confidence"
           value={`${data.stats.averageConfidence}%`}
-          description="Average detection confidence"
           icon={<ShieldCheck size={20} />}
         />
       </div>
