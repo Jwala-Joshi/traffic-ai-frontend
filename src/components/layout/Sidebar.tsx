@@ -1,17 +1,6 @@
-import {
-  LayoutDashboard,
-  Radio,
-  AlertTriangle,
-  BarChart3,
-  Users,
-  Car,
-  Camera,
-  BrainCircuit,
-  Settings,
-  LogOut,
-  X,
-} from 'lucide-react'
-import { NavLink } from 'react-router'
+import {LayoutDashboard,Radio,AlertTriangle,BarChart3,Users,Car,Camera,BrainCircuit,Settings,LogOut,X,} from 'lucide-react'
+import { NavLink, useNavigate } from 'react-router'
+import { useAuth } from '../../context/useAuth'
 
 interface SidebarProps {
   isOpen: boolean
@@ -19,6 +8,14 @@ interface SidebarProps {
 }
 
 function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const { logoutUser } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logoutUser()
+    navigate('/login')
+  }
+
   return (
     <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <button
@@ -97,7 +94,7 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Bottom section */}
       <div className="sidebar-bottom">
-        <button className="sidebar-logout">
+        <button className="sidebar-logout" onClick={handleLogout}>
           <LogOut size={20} />
           <span>Logout</span>
         </button>

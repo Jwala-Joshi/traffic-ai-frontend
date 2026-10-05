@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Bell, User } from 'lucide-react'
+import { useAuth } from '../context/useAuth'
 
 import '../css/settings.css'
 
@@ -12,14 +13,9 @@ interface NotificationSetting {
 }
 
 function Settings() {
+  const { user } = useAuth()
   const [activeTab, setActiveTab] =
     useState<SettingsTab>('account')
-
-  const [profile, setProfile] = useState({
-    name: 'Admin User',
-    email: 'admin@trafficai.com',
-    role: 'Administrator',
-  })
 
   const [profileMessage, setProfileMessage] = useState('')
 
@@ -63,13 +59,7 @@ function Settings() {
       return
     }
 
-    setProfile({
-      ...profile,
-      name,
-      email,
-    })
-
-    setProfileMessage('Profile updated successfully.')
+    setProfileMessage('Profile changes will be available when account updates are connected.',)
   }
 
   const handlePasswordSubmit = (
@@ -136,10 +126,6 @@ function Settings() {
 
   return (
     <div className="settings-page">
-      <div className="settings-page-header">
-        <h1>Settings</h1>
-      </div>
-
       <div className="settings-layout">
         <aside className="settings-sidebar">
           <button
@@ -189,7 +175,7 @@ function Settings() {
                         id="profile-name"
                         name="name"
                         type="text"
-                        defaultValue={profile.name}
+                        defaultValue={user?.name ?? ''}
                         placeholder="Enter your name"
                       />
                     </div>
@@ -203,7 +189,7 @@ function Settings() {
                         id="profile-email"
                         name="email"
                         type="email"
-                        defaultValue={profile.email}
+                        defaultValue={user?.email ?? ''}
                         placeholder="Enter your email"
                       />
                     </div>
@@ -214,7 +200,7 @@ function Settings() {
                       <input
                         id="profile-role"
                         type="text"
-                        value={profile.role}
+                        value={user?.role ?? ''}
                         disabled
                       />
 

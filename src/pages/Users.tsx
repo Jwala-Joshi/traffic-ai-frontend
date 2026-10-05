@@ -1,11 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import {
-  ShieldCheck,
-  UserCheck,
-  UserCog,
-  Users as UsersIcon,
-  UserPlus,
-} from 'lucide-react'
+import {ShieldCheck,UserCheck,UserCog,Users as UsersIcon,UserPlus,} from 'lucide-react'
 
 import UserStatCard from '../components/users/UserStatCard'
 import UserFilters from '../components/users/UserFilters'
@@ -14,16 +8,15 @@ import EditUserModal from '../components/users/EditUserModal'
 import DeleteUserModal from '../components/users/DeleteUserModal'
 
 import { getUsersData } from '../services/usersService'
-import type {
-  User,
-  UserRole,
-  UserStatus,
-  UsersData,
-} from '../types/users'
+import type {User,UserRole,UserStatus,UsersData,} from '../types/users'
 
 import '../css/users.css'
 
+import { useAuth } from '../context/useAuth'
+
 function Users() {
+  const { user } = useAuth()
+  const isAdministrator = user?.role === 'administrator'
   const [data, setData] = useState<UsersData | null>(null)
 
   const [search, setSearch] = useState('')
@@ -130,18 +123,17 @@ function Users() {
       <div className="users-heading">
         <div>
           <h1>Users</h1>
-          <p>
-            Manage system users and monitor account activity.
-          </p>
         </div>
 
-        <button
-          className="users-add-button"
-          type="button"
-        >
-          <UserPlus size={17} />
-          Add User
-        </button>
+        {isAdministrator && (
+          <button
+            className="users-add-button"
+            type="button"
+          >
+            <UserPlus size={17} />
+            Add User
+          </button>
+        )}
       </div>
 
       <div className="users-stats">
