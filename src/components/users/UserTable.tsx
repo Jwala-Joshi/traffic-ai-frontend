@@ -15,7 +15,7 @@ function UserTable({
   onDelete,
 }: UserTableProps) {  
   const { user } = useAuth()
-  const isAdministrator = user?.role === 'administrator'
+  const isAdministrator = user?.role === 'ADMIN'
 
   return (
     <div className="users-table-wrapper">

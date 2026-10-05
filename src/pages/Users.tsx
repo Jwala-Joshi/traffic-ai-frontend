@@ -16,7 +16,7 @@ import { useAuth } from '../context/useAuth'
 
 function Users() {
   const { user } = useAuth()
-  const isAdministrator = user?.role === 'administrator'
+  const isAdministrator = user?.role === 'ADMIN'
   const [data, setData] = useState<UsersData | null>(null)
 
   const [search, setSearch] = useState('')

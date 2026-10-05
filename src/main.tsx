@@ -12,7 +12,7 @@ import './index.css'
 
 import AppLayout from './components/layout/AppLayout'
 import Login from './pages/Login'
-import Signup from './pages/Signup'
+// import Signup from './pages/Signup'
 import Dashboard from './pages/Dashboard'
 import LiveMonitoring from './pages/LiveMonitoring'
 import ViolationReview from './pages/ViolationReview'
@@ -30,7 +30,7 @@ import { AuthProvider } from './context/AuthProvider'
 const router = createBrowserRouter([
   { path: '/', element: <Login /> },
   { path: '/login', element: <Login /> },
-  { path: '/signup', element: <Signup /> },
+  // { path: '/signup', element: <Signup /> },
   {
     element: <AppLayout />,
     children: [
