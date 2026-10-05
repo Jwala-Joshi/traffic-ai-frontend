@@ -34,7 +34,7 @@ function Analytics() {
 
   return (
     <div className="analytics-page">
-      <div className="analytics-heading">
+      {/* <div className="analytics-heading">
         <div>
           <h1>Analytics</h1>
         </div>
@@ -42,7 +42,7 @@ function Analytics() {
         <div className="analytics-period">
           Last 7 days
         </div>
-      </div>
+      </div> */}
 
       <div className="analytics-stats">
         <AnalyticsStatCard

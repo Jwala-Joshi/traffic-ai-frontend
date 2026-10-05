@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {Bell,ChevronDown,Moon,Sun,User,Menu,AlertTriangle,ShieldAlert,HardHat,Gauge,Settings,LogOut,} from 'lucide-react'
-import { useNavigate } from 'react-router'
+import { useLocation,useNavigate } from 'react-router'
 import { useTheme } from '../../context/useTheme'
 import { useAuth } from '../../context/useAuth'
 import { getNotifications } from '../../services/notificationService'
@@ -18,6 +18,38 @@ function Header({ onMenuClick }: HeaderProps) {
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const [notifications, setNotifications] = useState<Notification[]>([])
+
+  const location = useLocation()
+  const getPageTitle = () => {
+    const path = location.pathname
+
+    if (path.startsWith('/violations/')) {
+      return 'Violation Review'
+    }
+
+    switch (path) {
+      case '/dashboard':
+        return 'Dashboard'
+      case '/live':
+        return 'Live Monitoring'
+      case '/violations':
+        return 'Violations'
+      case '/vehicles':
+        return 'Vehicles'
+      case '/cameras':
+        return 'Cameras'
+      case '/analytics':
+        return 'Analytics'
+      case '/ai-models':
+        return 'AI Models'
+      case '/users':
+        return 'Users'
+      case '/settings':
+        return 'Settings'
+      default:
+        return 'Dashboard'
+    }
+  }
 
   useEffect(() => {
     async function loadNotifications() {
@@ -71,7 +103,7 @@ function Header({ onMenuClick }: HeaderProps) {
       </button>
 
       <div className="header-page">
-        <h2>Sentry</h2>
+        <h2>{getPageTitle()}</h2>
       </div>
 
       <div className="header-actions">

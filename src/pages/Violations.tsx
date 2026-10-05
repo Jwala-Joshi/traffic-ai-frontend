@@ -72,9 +72,9 @@ function Violations() {
 
   return (
     <div className="violations-page">
-      <div className="violations-heading">
+      {/* <div className="violations-heading">
           <h1>Violations</h1>
-      </div>
+      </div> */}
 
       <div className="violations-summary">
         <div className="violations-stat-card">

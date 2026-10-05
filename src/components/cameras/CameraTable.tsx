@@ -1,6 +1,7 @@
 import { Camera } from 'lucide-react'
 import type { Camera as CameraType } from '../../types/cameras'
 import CameraStatusBadge from './CameraStatusBadge'
+import { useAuth } from '../../context/useAuth'
 
 interface CameraTableProps {
   cameras: CameraType[]
@@ -13,6 +14,9 @@ function CameraTable({
   onEdit,
   onDelete,
 }: CameraTableProps) {
+  const { user } = useAuth()
+  const isAdministrator = user?.role === 'administrator'
+
   if (cameras.length === 0) {
     return (
       <div className="cameras-empty">
@@ -33,7 +37,7 @@ function CameraTable({
             <th>FPS</th>
             <th>Last Active</th>
             <th>Status</th>
-            <th>Actions</th>
+            {isAdministrator && (<th>Actions</th>)}
           </tr>
         </thead>
 
@@ -65,27 +69,29 @@ function CameraTable({
                 <CameraStatusBadge status={camera.status} />
               </td>
 
-              <td>
-                <div className="cameras-actions">
-                  <button
-                    type="button"
-                    className="cameras-edit-button"
-                    onClick={() => onEdit(camera)}
-                    aria-label={`Edit ${camera.name}`}
-                  >
-                    Edit
-                  </button>
+              {isAdministrator && (
+                <td>
+                  <div className="cameras-actions">
+                    <button
+                      type="button"
+                      className="cameras-edit-button"
+                      onClick={() => onEdit(camera)}
+                      aria-label={`Edit ${camera.name}`}
+                    >
+                      Edit
+                    </button>
 
-                  <button
-                    type="button"
-                    className="cameras-delete-button"
-                    onClick={() => onDelete(camera)}
-                    aria-label={`Delete ${camera.name}`}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
+                    <button
+                      type="button"
+                      className="cameras-delete-button"
+                      onClick={() => onDelete(camera)}
+                      aria-label={`Delete ${camera.name}`}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

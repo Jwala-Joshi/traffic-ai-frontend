@@ -3,7 +3,7 @@ import {
   Bike,
   CarFront,
   CircleCheck,
-  Plus,
+ /* Plus,*/
 } from 'lucide-react'
 
 import VehicleStatCard from '../components/vehicles/VehicleStatCard'
@@ -81,9 +81,9 @@ function Vehicles() {
     (vehicle) => vehicle.type === 'bike',
   ).length
 
-  const handleEditVehicle = (vehicle: Vehicle) => {
-    setEditingVehicle(vehicle)
-  }
+  // const handleEditVehicle = (vehicle: Vehicle) => {
+  //   setEditingVehicle(vehicle)
+  // }
 
   const handleSaveVehicle = (updatedVehicle: Vehicle) => {
     setData((currentData) => {
@@ -102,9 +102,9 @@ function Vehicles() {
     setEditingVehicle(null)
   }
 
-  const handleDeleteVehicle = (vehicle: Vehicle) => {
-    setDeletingVehicle(vehicle)
-  }
+  // const handleDeleteVehicle = (vehicle: Vehicle) => {
+  //   setDeletingVehicle(vehicle)
+  // }
 
   const handleConfirmDelete = () => {
     if (!deletingVehicle) return
@@ -125,12 +125,9 @@ function Vehicles() {
 
   return (
     <div className="vehicles-page">
-      <div className="vehicles-heading">
+      {/* <div className="vehicles-heading">
         <div>
           <h1>Vehicles</h1>
-          <p>
-            Manage registered vehicles and monitor detection activity.
-          </p>
         </div>
 
         <button
@@ -140,7 +137,7 @@ function Vehicles() {
           <Plus size={17} />
           Add Vehicle
         </button>
-      </div>
+      </div> */}
 
       <div className="vehicles-stats">
         <VehicleStatCard
@@ -194,8 +191,8 @@ function Vehicles() {
 
         <VehicleTable
           vehicles={filteredVehicles}
-          onEdit={handleEditVehicle}
-          onDelete={handleDeleteVehicle}
+          // onEdit={handleEditVehicle}
+          // onDelete={handleDeleteVehicle}
         />
       </section>
 

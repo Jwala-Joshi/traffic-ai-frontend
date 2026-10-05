@@ -1,4 +1,6 @@
-import {LayoutDashboard,Radio,AlertTriangle,BarChart3,Users,Car,Camera,BrainCircuit,Settings,LogOut,X,} from 'lucide-react'
+import {LayoutDashboard,Radio,AlertTriangle,BarChart3,Users,Car,Camera,
+  // BrainCircuit,
+  Settings,LogOut,X,} from 'lucide-react'
 import { NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../../context/useAuth'
 
@@ -27,12 +29,12 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
       </button>
       {/* Logo */}
       <div className="sidebar-logo">
-        <div className="sidebar-logo-icon">
+        {/* <div className="sidebar-logo-icon">
           #LOGO
-        </div>
+        </div> */}
 
         <div>
-          <h1>Traffic AI</h1>
+          <h1>Sentry</h1>
           <span>Monitoring System</span>
         </div>
       </div>
@@ -79,10 +81,10 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         <div className="sidebar-section">
-          <NavLink to="/ai-models" className="sidebar-link">
+          {/* <NavLink to="/ai-models" className="sidebar-link">
             <BrainCircuit size={20} />
             <span>AI Models</span>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to="/settings" className="sidebar-link">
             <Settings size={20} />

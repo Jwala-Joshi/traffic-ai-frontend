@@ -4,14 +4,14 @@ import VehicleStatusBadge from './VehicleStatusBadge'
 
 interface VehicleTableProps {
   vehicles: Vehicle[]
-  onEdit: (vehicle: Vehicle) => void
-  onDelete: (vehicle: Vehicle) => void
+  // onEdit: (vehicle: Vehicle) => void
+  // onDelete: (vehicle: Vehicle) => void
 }
 
 function VehicleTable({
   vehicles,
-  onEdit,
-  onDelete,
+  // onEdit,
+  // onDelete,
 }: VehicleTableProps) {
   if (vehicles.length === 0) {
     return (
@@ -33,7 +33,7 @@ function VehicleTable({
             <th>Owner</th>
             <th>Last Detected</th>
             <th>Status</th>
-            <th>Actions</th>
+            {/* <th>Actions</th> */}
           </tr>
         </thead>
 
@@ -75,7 +75,7 @@ function VehicleTable({
                 <VehicleStatusBadge status={vehicle.status} />
               </td>
 
-              <td>
+              {/* <td>
                 <div className="vehicles-actions">
                   <button
                     type="button"
@@ -95,7 +95,7 @@ function VehicleTable({
                     Delete
                   </button>
                 </div>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>

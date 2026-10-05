@@ -20,7 +20,7 @@ import Violations from './pages/Violations'
 import Vehicles from './pages/Vehicles'
 import Cameras from './pages/Cameras'
 import Analytics from './pages/Analytics'
-import AIModels from './pages/AIModels'
+// import AIModels from './pages/AIModels'
 import Users from './pages/Users'
 import Settings from './pages/Settings'
 
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       { path: 'vehicles', element: <Vehicles /> },
       { path: 'cameras', element: <Cameras /> },
       { path: 'analytics', element: <Analytics /> },
-      { path: 'ai-models', element: <AIModels /> },
+      // { path: 'ai-models', element: <AIModels /> },
       { path: 'users', element: <Users /> },
       { path: 'settings', element: <Settings /> },
     ],

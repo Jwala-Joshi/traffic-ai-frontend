@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import {Activity,Brain,CircleCheck,Layers, Plus} from 'lucide-react'
+import {Activity,Brain,CircleCheck,Layers, /*Plus*/} from 'lucide-react'
 
 import AIModelStatCard from '../components/ai-models/AIModelStatCard'
 import AIModelFilters from '../components/ai-models/AIModelFilters'
@@ -125,12 +125,9 @@ function AIModels() {
 
   return (
     <div className="ai-models-page">
-      <div className="ai-models-heading">
+      {/* <div className="ai-models-heading">
         <div>
           <h1>AI Models</h1>
-          <p>
-            Manage detection models and monitor their performance.
-          </p>
         </div>
 
         <button
@@ -140,7 +137,7 @@ function AIModels() {
           <Plus size={17} />
           Add Model
         </button>
-      </div>
+      </div> */}
 
       <div className="ai-models-stats">
         <AIModelStatCard

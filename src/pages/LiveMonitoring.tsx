@@ -53,7 +53,7 @@ function LiveMonitoring() {
 
   return (
     <div className="monitoring-page">
-      <div className="monitoring-heading">
+      {/* <div className="monitoring-heading">
         <div>
           <h1>Live Monitoring</h1>
         </div>
@@ -62,7 +62,7 @@ function LiveMonitoring() {
           <span />
           System Active
         </div>
-      </div>
+      </div> */}
 
       <div className="monitoring-layout">
         <aside className="monitoring-sidebar">

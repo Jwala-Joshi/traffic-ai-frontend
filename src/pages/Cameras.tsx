@@ -21,8 +21,12 @@ import type {
 } from '../types/cameras'
 
 import '../css/cameras.css'
+import { useAuth } from '../context/useAuth'
 
 function Cameras() {
+  const { user } = useAuth()
+  const isAdministrator = user?.role === 'administrator'
+
   const [data, setData] = useState<CamerasData | null>(null)
 
   const [search, setSearch] = useState('')
@@ -129,19 +133,11 @@ function Cameras() {
 
   return (
     <div className="cameras-page">
-      <div className="cameras-heading">
+      {/* <div className="cameras-heading">
         <div>
           <h1>Cameras</h1>
         </div>
-
-        <button
-          type="button"
-          className="cameras-add-button"
-        >
-          <Plus size={17} />
-          Add Camera
-        </button>
-      </div>
+      </div> */}
 
       <div className="cameras-stats">
         <CameraStatCard
@@ -182,6 +178,16 @@ function Cameras() {
               {filteredCameras.length !== 1 ? 's' : ''} found
             </p>
           </div>
+
+          {isAdministrator && (
+            <button
+              type="button"
+              className="cameras-add-button"
+            >
+              <Plus size={17} />
+              Add Camera
+            </button> 
+          )}
         </div>
 
         <CameraFilters

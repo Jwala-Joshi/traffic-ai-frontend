@@ -120,21 +120,11 @@ function Users() {
 
   return (
     <div className="users-page">
-      <div className="users-heading">
+      {/* <div className="users-heading">
         <div>
           <h1>Users</h1>
         </div>
-
-        {isAdministrator && (
-          <button
-            className="users-add-button"
-            type="button"
-          >
-            <UserPlus size={17} />
-            Add User
-          </button>
-        )}
-      </div>
+      </div> */}
 
       <div className="users-stats">
         <UserStatCard
@@ -175,6 +165,16 @@ function Users() {
               {filteredUsers.length !== 1 ? 's' : ''} found
             </p>
           </div>
+          
+          {isAdministrator && (
+            <button
+              className="users-add-button"
+              type="button"
+            >
+              <UserPlus size={17} />
+              Add User
+            </button>
+          )}
         </div>
 
         <UserFilters

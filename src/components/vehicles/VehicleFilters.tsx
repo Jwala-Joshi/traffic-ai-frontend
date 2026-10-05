@@ -38,7 +38,7 @@ function VehicleFilters({
       >
         <option value="all">All Types</option>
         <option value="car">Car</option>
-        <option value="motorcycle">Motorcycle</option>
+        <option value="bike">Bike</option>
         <option value="bus">Bus</option>
         <option value="truck">Truck</option>
       </select>
