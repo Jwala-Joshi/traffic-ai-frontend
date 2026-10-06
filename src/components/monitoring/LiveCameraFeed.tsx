@@ -2,34 +2,44 @@ import {
   Camera,
   Circle,
   Maximize,
-  Video,
 } from 'lucide-react'
-import type { MonitoringCamera } from '../../types/monitoring'
+
+import type { Camera as CameraType } from '../../types/monitoring'
 
 interface LiveCameraFeedProps {
-  camera: MonitoringCamera
+  camera: CameraType
 }
 
 function LiveCameraFeed({
   camera,
 }: LiveCameraFeedProps) {
-  const isOnline = camera.status === 'online'
+  const isOnline =
+    camera.worker.online
+
+  const streamUrl =
+    camera.playback.hls_url
 
   return (
     <section className="monitoring-feed-panel">
       <div className="monitoring-feed-header">
         <div>
           <h3>{camera.name}</h3>
-          <span>{camera.location}</span>
+
+          <span>
+            {camera.district},{' '}
+            {camera.municipality}
+          </span>
         </div>
 
         <div className="monitoring-feed-meta">
           <span>
-            {camera.resolution}
+            {camera.worker.fps
+              ? `${camera.worker.fps} FPS`
+              : 'FPS unavailable'}
           </span>
 
           <span>
-            {camera.fps} FPS
+            {isOnline ? 'Online' : 'Offline'}
           </span>
         </div>
       </div>
@@ -39,18 +49,22 @@ function LiveCameraFeed({
           !isOnline ? 'offline' : ''
         }`}
       >
-        {isOnline ? (
+        {isOnline && streamUrl ? (
           <>
-            <div className="monitoring-feed-placeholder">
-              <Video size={42} />
-              <span>Live Camera Feed</span>
-              <small>
-                Video stream will be connected here
-              </small>
-            </div>
+            <video
+              className="monitoring-video"
+              src={streamUrl}
+              autoPlay
+              muted
+              controls
+              playsInline
+            />
 
             <div className="monitoring-live-indicator">
-              <Circle size={8} fill="currentColor" />
+              <Circle
+                size={8}
+                fill="currentColor"
+              />
               LIVE
             </div>
 
@@ -65,18 +79,22 @@ function LiveCameraFeed({
               <span>
                 {new Date().toLocaleTimeString()}
               </span>
-
-              <span>
-                AI Detection Active
-              </span>
             </div>
           </>
         ) : (
           <div className="monitoring-feed-placeholder">
             <Camera size={42} />
-            <span>Camera Offline</span>
+
+            <span>
+              {!isOnline
+                ? 'Camera Offline'
+                : 'Video Unavailable'}
+            </span>
+
             <small>
-              No video signal available
+              {!isOnline
+                ? 'No video signal available'
+                : 'No playable video stream is available'}
             </small>
           </div>
         )}
