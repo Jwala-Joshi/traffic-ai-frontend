@@ -13,6 +13,7 @@ import './index.css'
 import AppLayout from './components/layout/AppLayout'
 import Login from './pages/Login'
 // import Signup from './pages/Signup'
+import ProtectedRoute from './components/auth/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import LiveMonitoring from './pages/LiveMonitoring'
 import ViolationReview from './pages/ViolationReview'
@@ -32,20 +33,28 @@ const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
   // { path: '/signup', element: <Signup /> },
   {
-    element: <AppLayout />,
+    element: <ProtectedRoute />,
     children: [
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'live', element: <LiveMonitoring /> },
-      { path: 'violations', element: <Violations /> },
-      { path: 'violations/:id', element: <ViolationReview /> },
-      { path: 'vehicles', element: <Vehicles /> },
-      { path: 'cameras', element: <Cameras /> },
-      { path: 'analytics', element: <Analytics /> },
-      // { path: 'ai-models', element: <AIModels /> },
-      { path: 'users', element: <Users /> },
-      { path: 'settings', element: <Settings /> },
+      {
+        element: <AppLayout />,
+        children: [
+          { path: 'dashboard', element: <Dashboard /> },
+          { path: 'live', element: <LiveMonitoring /> },
+          { path: 'violations', element: <Violations /> },
+          {
+            path: 'violations/:id',
+            element: <ViolationReview />,
+          },
+          { path: 'vehicles', element: <Vehicles /> },
+          { path: 'cameras', element: <Cameras /> },
+          { path: 'analytics', element: <Analytics /> },
+          // { path: 'ai-models', element: <AIModels /> },
+          { path: 'users', element: <Users /> },
+          { path: 'settings', element: <Settings /> },
+        ],
+      },
     ],
-  },
+  }
 ])
 
 const queryClient = new QueryClient()

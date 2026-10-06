@@ -10,17 +10,32 @@ export async function apiClient<T>(
 ): Promise<T> {
   const { token, headers, ...requestOptions } = options
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...requestOptions,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...headers,
+  const response = await fetch(
+    `${API_BASE_URL}${endpoint}`,
+    {
+      ...requestOptions,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token
+          ? {
+              Authorization: `Bearer ${token}`,
+            }
+          : {}),
+        ...headers,
+      },
     },
-  })
+  )
 
   if (!response.ok) {
-    const error = await response.json().catch(() => null)
+    const error = await response
+      .json()
+      .catch(() => null)
+
+    if (response.status === 401) {
+      window.dispatchEvent(
+        new Event('auth:logout'),
+      )
+    }
 
     throw {
       status: response.status,
